@@ -74,7 +74,7 @@ kubernetes cluster as a managed API in the Kubernetes cluster.
 
 - Create API <br /> 
     ```
-        apictl add api -n OnlineStore --from-file=products_swagger.yaml
+        apictl add api -n onlinestore --from-file=products_swagger.yaml
     ``` 
     - Output:
     ```$xslt
