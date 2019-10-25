@@ -74,7 +74,7 @@ kubernetes cluster as a managed API in the Kubernetes cluster.
 
 - Create API <br /> 
     ```
-        apictl add api -n onlinestore --from-file=products_swagger.yaml
+        apictl add api -n online-store --from-file=products_swagger.yaml
     ``` 
     - Output:
     ```$xslt
@@ -90,7 +90,7 @@ kubernetes cluster as a managed API in the Kubernetes cluster.
     - Output:
     ```    
         NAME          AGE
-        OnlineStore   55m
+        online-store   55m
     ```
 
 - Get service details to invoke the API<br />
@@ -101,7 +101,7 @@ kubernetes cluster as a managed API in the Kubernetes cluster.
     
     ```
         NAME                 TYPE           CLUSTER-IP     EXTERNAL-IP       PORT(S)                         AGE
-        OnlineStore         LoadBalancer   10.83.9.188    34.66.153.49      9095:32087/TCP,9090:32572/TCP   98m
+        online-store         LoadBalancer   10.83.9.188    34.66.153.49      9095:32087/TCP,9090:32572/TCP   98m
         products            LoadBalancer   10.83.1.131    104.197.114.248   80:30475/TCP                    77m
     ```
     - You can see both the backend(products) service and the managed API service(OnlineStore) is available.
@@ -115,6 +115,15 @@ kubernetes cluster as a managed API in the Kubernetes cluster.
     ```
         curl -X GET "https://<external IP of LB service>:9095/store/v1.0.0/products" -H "accept: application/json" -H "Authorization:Bearer $TOKEN" -k
     ```
+    
+    When using minikube 
+     ```
+         curl -X GET "https://<minikube IP>:32087/store/v1.0.0/products" -H "accept: application/json" -H "Authorization:Bearer $TOKEN" -k
+    ```
+    
+    
+    
+    
     - Once you execute the above command, it will call to the managed API (OnlineStore), which then call its endpoint("products" service) available in the cluster. If the request is success, you would be able to see the response as below.
     ```
         {"products":[{"name":"Apples", "id":101, "price":"$1.49 / lb"}, {"name":"Macaroni & Cheese", "id":151, "price":"$7.69"}, {"name":"ABC Smart TV", "id":301, "price":"$399.99"}, {"name":"Motor Oil", "id":401, "price":"$22.88"}, {"name":"Floral Sleeveless Blouse", "id":501, "price":"$21.50"}]}
@@ -123,9 +132,9 @@ kubernetes cluster as a managed API in the Kubernetes cluster.
 
 - Delete the  API <br /> 
     ```
-        apictl delete api OnlineStore
+        apictl delete api online-store
     ```
     -  Output:
     ```
-        api.wso2.com "OnlineStore" deleted
+        api.wso2.com "online-store" deleted
     ```
