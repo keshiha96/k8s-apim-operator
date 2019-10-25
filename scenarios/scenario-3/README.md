@@ -71,7 +71,15 @@
    
     ```
         curl -X GET "https://<external IP of LB service>:9095/petstore/v1/pet/55" -H "accept: application/xml" -H "Authorization:Basic $BASIC" -k
-    ```    
+    ``` 
+    
+    When using minikube
+    ```
+        curl -X GET "https://<minikube IP>:30251/petstore/v1/pet/55" -H "accept: application/xml" -H "Authorization:Basic $BASIC" -k
+    ``` 
+    
+    
+    
     - Once you execute the above command, it will call to the managed API (petstore-basic), which then call its endpoint(https://petstore.swagger.io/v2). If the request is success, you would be able to see the response as below.
     ```
         <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Pet><category><id>55</id><name>string</name></category><id>55</id><name>SRC_TIME_SIZE</name><photoUrls><photoUrl>string</photoUrl></photoUrls><status>available</status><tags><tag><id>55</id><name>string</name></tag></tags></Pet>
